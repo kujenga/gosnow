@@ -9,7 +9,7 @@ Setup the inner drafter directory with:
 
 Install the drafter dylib with `make install`
 
-Run the pure c tests with `make test`
+Run the pure C tests with `make test`
 
 ## Issues
 
@@ -18,6 +18,6 @@ linking to the `libdrafter.dylib` is currently done by linking the library to th
 This is the runtime error that occurs when the global library is not present
 ```
 dyld: Library not loaded: /usr/local/lib/libdrafter.dylib
-  Referenced from: /Users/ataylor/rastech/gosnow/./test
+  Referenced from: /Users/uname/dev/gosnow/./test
   Reason: image not found
 ```
