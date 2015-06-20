@@ -7,7 +7,11 @@ go:
 install:
   - git submodule update --init --recursive
   - make ci
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+  - go get github.com/axw/gocov/gocov
 
 script:
   - make test
-  - go test -v ./...
+  - go test -v ./... -race -covermode=count -coverprofile=coverage.out 
+  - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN

@@ -3,7 +3,17 @@ dependencies:
   pre: 
     - git submodule update --init --recursive
     - make ci
+  post:
+    - go get golang.org/x/tools/cmd/cover
+    - go get github.com/mattn/goveralls
+  	- go get github.com/axw/gocov/gocov
 
 test:
-  pre:
+  override:
     - make test
+    - go test -v ./... -race
+      -covermode=count
+      -coverprofile=coverage.out
+    # - $GOPATH/bin/goveralls
+    #   -service=circle-ci
+    #   -repotoken $COVERALLS_TOKEN
