@@ -2,7 +2,7 @@ package gosnow
 
 import (
 	"encoding/json"
-	// "fmt"
+	"fmt"
 	"io/ioutil"
 	"testing"
 )
@@ -116,7 +116,7 @@ func TestRawOptionParse(t *testing.T) {
 	if res == nil {
 		t.Fatal("RawOptionParse returned nil result")
 	}
-	// fmt.Println(string(res))
+	fmt.Println(string(res))
 }
 
 func TestParse(t *testing.T) {

@@ -14,6 +14,33 @@ import (
 	"unsafe"
 )
 
+// Warning Codes
+// see https://github.com/apiaryio/snowcrash/blob/master/src/SourceAnnotation.h#L128
+const (
+	NoWarning                 = 0
+	APINameWarning            = 1
+	DuplicateWarning          = 2
+	FormattingWarning         = 3
+	RedefinitionWarning       = 4
+	IgnoringWarning           = 5
+	EmptyDefinitionWarning    = 6
+	NotEmptyDefinitionWarning = 7
+	LogicalErrorWarning       = 8
+	DeprecatedWarning         = 9
+	IndentationWarning        = 10
+	AmbiguityWarning          = 11
+	URIWarning                = 12
+)
+
+// Error Codes
+// see https://github.com/apiaryio/snowcrash/blob/master/src/SourceAnnotation.h#L113
+const (
+	NoError          = 0
+	ApplicationError = 1
+	BusinessError    = 2
+	SymbolError      = 3
+)
+
 // LocationPoint makes up an array of possibly non-continuous blocks of the source API Blueprint.
 type LocationPoint struct {
 	// Zero-based index of the character where warning has occurred.

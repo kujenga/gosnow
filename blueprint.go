@@ -1,5 +1,10 @@
 package gosnow
 
+/*
+The structs in this file should be 1:1 with the Snow Crash AST
+counterparts (https://github.com/apiaryio/snowcrash/blob/master/src/Blueprint.h).
+*/
+
 // TransactionExample Blueprint AST node
 type TransactionExample struct {
 	Name        string
@@ -86,6 +91,7 @@ type Resource struct {
 
 // Blueprint is a data representation of the ast blueprints
 type Blueprint struct {
+	Version string `json:"_version"`
 	// Metadata collection Blueprint AST node
 	Metadata []struct {
 		Name  string
@@ -102,7 +108,3 @@ type Blueprint struct {
 	Description string
 	Element     string
 }
-
-// BlueprintSourcemap is a blueprint for sourcemaps
-// TODO: fill this out
-type BlueprintSourcemap interface{}
