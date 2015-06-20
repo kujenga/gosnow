@@ -3,9 +3,11 @@
 [![Build Status](https://travis-ci.org/kujenga/gosnow.svg?branch=master)](https://travis-ci.org/kujenga/gosnow)
 [![Coverage Status](https://coveralls.io/repos/kujenga/gosnow/badge.svg)](https://coveralls.io/r/kujenga/gosnow)
 
-A Go library for handling the [API Blueprint](https://apiblueprint.org) format.
+A Go library for handling the [API Blueprint](https://apiblueprint.org) format, wrapping [Drafter](https://github.com/apiaryio/drafter) and [Snow Crash](https://github.com/apiaryio/snowcrash).
 
-## Usage
+Influenced in principle by [RedSnow](https://github.com/apiaryio/redsnow), the Ruby binding for [Snow Crash](https://github.com/apiaryio/snowcrash).
+
+## Setup
 
 Setup the inner drafter directory with: 
 `git submodule update --init --recursive`
