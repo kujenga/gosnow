@@ -1,7 +1,4 @@
-# Gosnow
-
-[![Build Status](https://travis-ci.org/kujenga/gosnow.svg?branch=master)](https://travis-ci.org/kujenga/gosnow)
-[![Coverage Status](https://coveralls.io/repos/kujenga/gosnow/badge.svg)](https://coveralls.io/r/kujenga/gosnow)
+# Gosnow [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://godoc.org/github.com/kujenga/gosnow) [![Build Status](https://travis-ci.org/kujenga/gosnow.svg?branch=master)](https://travis-ci.org/kujenga/gosnow) [![Coverage Status](https://coveralls.io/repos/kujenga/gosnow/badge.svg)](https://coveralls.io/r/kujenga/gosnow)
 
 A Go library for handling the [API Blueprint](https://apiblueprint.org) format, wrapping [Drafter](https://github.com/apiaryio/drafter) and [Snow Crash](https://github.com/apiaryio/snowcrash).
 
