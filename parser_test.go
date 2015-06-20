@@ -2,7 +2,7 @@ package gosnow
 
 import (
 	"encoding/json"
-	"fmt"
+	_ "fmt"
 	"io/ioutil"
 	"testing"
 )
@@ -116,7 +116,17 @@ func TestRawOptionParse(t *testing.T) {
 	if res == nil {
 		t.Fatal("RawOptionParse returned nil result")
 	}
-	fmt.Println(string(res))
+	// fmt.Println(string(res))
+}
+
+func TestRawSourceMapOptionParse(t *testing.T) {
+	res, err := RawOptionParse(apibFile, ExportSourcemapOptionKey)
+	if err != nil {
+		t.Errorf("RawOptionParse failed for ExportSourcemapOptionKey with error: %v", err)
+	} else if res == nil {
+		t.Errorf("RawOptionParse for key ExportSourcemapOptionKey returned empty result")
+	}
+	// fmt.Println(string(res))
 }
 
 func TestParse(t *testing.T) {
@@ -173,16 +183,22 @@ func TestFilesOptionParse(t *testing.T) {
 	} else if res == nil {
 		t.Errorf("OptionParse for key ScRenderDescriptionsOptionKey returned empty result")
 	}
+}
 
-	_, err = OptionParse(namelessSrc, RequireBlueprintNameOptionKey)
+func TestRequiredNameOptionParse(t *testing.T) {
+	_, err := OptionParse(namelessSrc, RequireBlueprintNameOptionKey)
 	if err == nil {
 		t.Errorf("strict OptionParse did not fail for key RequireBlueprintNameOptionKey")
 	}
+}
 
-	res, err = OptionParse(apibFile, ExportSourcemapOptionKey)
+func TestSourceMapOptionParse(t *testing.T) {
+	res, err := OptionParse(apibFile, ExportSourcemapOptionKey)
 	if err != nil {
 		t.Errorf("OptionParse failed for ExportSourcemapOptionKey with error: %v", err)
 	} else if res == nil {
 		t.Errorf("OptionParse for key ExportSourcemapOptionKey returned empty result")
 	}
+	// v, _ := json.MarshalIndent(res, "", "  ")
+	// fmt.Println(string(v))
 }
