@@ -78,6 +78,35 @@ func init() {
 	}
 }
 
+func TestSourceAnnotationOk(t *testing.T) {
+	sa := new(SourceAnnotation)
+	if !sa.Ok() {
+		t.Error("empty source annotation should have zero value indicating ok")
+	}
+	sa.Code = 2
+	if sa.Ok() {
+		t.Error("source annotation should have non zero value indicating not ok")
+	}
+}
+
+func TestNewPR(t *testing.T) {
+	_, err := newPR([]byte(`{"unrelated": "json"}`))
+	if err != nil {
+		t.Errorf("newPR errored for valid json %v", err)
+	}
+}
+
+func TestNewPRFailure(t *testing.T) {
+	junk := []byte(`*#(*(R$#&)$#)R*(Y@#_RH`)
+	_, err := newPR(junk)
+	if err == nil {
+		t.Error("newPR should have errored and did not")
+	}
+	if e, ok := err.(*json.SyntaxError); !ok {
+		t.Errorf("Expected json.SyntaxError, got %T", e)
+	}
+}
+
 func TestParse(t *testing.T) {
 	res, err := Parse(apibFile)
 	if err != nil {
