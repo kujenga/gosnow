@@ -1,48 +1,75 @@
 package gosnow
 
+// TransactionExample Blueprint AST node
 type TransactionExample struct {
 	Name        string
 	Description string
-	Requests    []Payload
-	Responses   []Payload
+	// example request payloads
+	Requests []Payload
+	// example response payloads
+	Responses []Payload
 }
 
+// Action Blueprint AST node represents 'action section'
 type Action struct {
 	Name        string
 	Description string
-	Method      string
-	Parameters  []Parameter
-	Attributes  struct {
-		Relation    string
+	// HTTP request method or nil
+	Method string
+	// action-specific URI parameters or nil
+	Parameters []Parameter
+	// TODO: in RedSnow, these are flattened out. Ideally these should be too
+	Attributes struct {
+		// action relation attribute
+		Relation string
+		// action uri template attribute
 		UTITemplate string
 	}
-	Content  []interface{}
+	Content []interface{}
+	// action transaction examples
 	Examples []TransactionExample
 }
 
+// Parameter is a URI parameter Blueprint AST node
+// represents one 'parameters section' parameter
 type Parameter struct {
-	Name        string
+	Name string
+	// an arbitrary type of the parameter or nil
 	Type        string
 	Description string
-	Required    bool
-	Default     string
-	Example     string
-	Values      []struct {
+	// parameter necessity flag
+	// TODO: change this to be an enum indicating required`, optional or undefined
+	// Where undefined implies required according to the API Blueprint Specification
+	Required bool
+	// default value of the parameter or nil
+	DefaultValue string `json:"default"`
+	// example value of the parameter or nil
+	ExampleValue string `json:"example"`
+	// an enumeration of possible parameter values
+	Values []struct {
 		Value string
 	}
 }
 
 const contentTypeHeaderKey = "Content-Type"
 
+// Payload is a HTTP message payload Blueprint AST node
 type Payload struct {
 	Name        string
 	Description string
-	Headers     []struct {
+	// array of HTTP header fields of the message or nil
+	Headers []struct {
 		Name  string
 		Value string
 	}
-	Body    string
-	Schema  string
+	// HTTP-message body or nil
+	Body string
+	// HTTP-message body validation schema or nil
+	Schema string
+	// Symbol Reference if the payload is a reference
+	Reference struct {
+		ID string
+	}
 	Content []interface{}
 }
 
@@ -57,8 +84,8 @@ type Resource struct {
 	Actions     []Action
 }
 
-// ASTBlueprint is a data representation of the ast blueprints
-type ASTBlueprint struct {
+// Blueprint is a data representation of the ast blueprints
+type Blueprint struct {
 	// Metadata collection Blueprint AST node
 	Metadata []struct {
 		Name  string
@@ -76,6 +103,6 @@ type ASTBlueprint struct {
 	Element     string
 }
 
-// SourcemapBlueprint is a blueprint for sourcemaps
+// BlueprintSourcemap is a blueprint for sourcemaps
 // TODO: fill this out
-type SourcemapBlueprint interface{}
+type BlueprintSourcemap interface{}

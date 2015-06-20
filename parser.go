@@ -34,12 +34,18 @@ func (s *SourceAnnotation) Ok() bool {
 	return s.Code == 0
 }
 
-// ParseResult contains all the information necessary to
+// ParseResult contains all the information resulting from the parse
+// in a fully typed structured format
+// see: https://github.com/apiaryio/api-blueprint-ast/blob/master/Parse%20Result.md
 type ParseResult struct {
-	AST       ASTBlueprint
-	SourceMap SourcemapBlueprint
-	Error     SourceAnnotation
-	Warnings  []SourceAnnotation
+	AST       Blueprint
+	SourceMap BlueprintSourcemap
+	// Description of a parsing error as occurred during parsing.
+	// If this field is present && code different from 0 then the
+	// content of ast field should be ignored.
+	Error SourceAnnotation
+	// Ordered array of parser warnings as occurred during the parsing.
+	Warnings []SourceAnnotation
 }
 
 func newPR(data []byte) (*ParseResult, error) {

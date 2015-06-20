@@ -2,6 +2,7 @@ package gosnow
 
 import (
 	"encoding/json"
+	// "fmt"
 	"io/ioutil"
 	"testing"
 )
@@ -105,6 +106,17 @@ func TestNewPRFailure(t *testing.T) {
 	if e, ok := err.(*json.SyntaxError); !ok {
 		t.Errorf("Expected json.SyntaxError, got %T", e)
 	}
+}
+
+func TestRawOptionParse(t *testing.T) {
+	res, err := RawOptionParse(apibFile, 0)
+	if err != nil {
+		t.Fatalf("RawOptionParse failed with error: %v", err)
+	}
+	if res == nil {
+		t.Fatal("RawOptionParse returned nil result")
+	}
+	// fmt.Println(string(res))
 }
 
 func TestParse(t *testing.T) {
