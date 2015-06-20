@@ -2,7 +2,8 @@
 dependencies:
   pre: 
     - git submodule update --init --recursive
-    - make install
+    - make ci
+    - export LD_LIBRARY_PATH="./drafter/build/out/Release/$(if [ $(uname) != "Darwin" ]; then echo 'lib.target/'; fi)"
 
 test:
   pre:

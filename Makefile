@@ -8,7 +8,7 @@ install:
 	ln -s $(CURDIR)/drafter/build/out/Release/libdrafter.dylib /usr/local/lib/libdrafter.dylib
 	mkdir -p ./test/bin
 
-travis:
+ci:
 	cd drafter && ./configure --shared && make
 	mkdir -p ./test/bin
 
