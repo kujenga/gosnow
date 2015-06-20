@@ -7,7 +7,6 @@ go:
 install:
   - git submodule update --init --recursive
   - make ci
-  - export LD_LIBRARY_PATH="./drafter/build/out/Release/$(if [ $(uname) != "Darwin" ]; then echo 'lib.target/'; fi)"
 
 script:
   - make test
