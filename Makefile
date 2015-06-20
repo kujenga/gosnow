@@ -1,7 +1,7 @@
 
 all:
 	cd test && gcc -Wall -c ctest.c -I../drafter/src/ -I../drafter/ext/snowcrash/src/
-	gcc ./test/ctest.o -L./drafter/build/out/Release/ -ldrafter -o ./test/bin/ctest
+	gcc ./test/ctest.o -L./drafter/build/out/Release/ -L./drafter/build/out/Release/lib.target/ -ldrafter -o ./test/bin/ctest
 
 install:
 	cd drafter && ./configure --shared && make
