@@ -1,0 +1,9 @@
+
+dependencies:
+  pre: 
+    - git submodule update --init --recursive
+    - make install
+
+test:
+  pre:
+    - make test
