@@ -1,5 +1,7 @@
 # Gosnow
 
+[![Build Status](https://travis-ci.org/kujenga/gosnow.svg?branch=master)](https://travis-ci.org/kujenga/gosnow)
+
 A Go library for handling the [API Blueprint](https://apiblueprint.org) format.
 
 ## Usage

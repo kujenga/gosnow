@@ -4,9 +4,13 @@ all:
 	gcc ./test/ctest.o -L./drafter/build/out/Release/ -ldrafter -o ./test/bin/ctest
 
 install:
-	cd drafter && ./configure --shared && make	
+	cd drafter && ./configure --shared && make
 	ln -s $(CURDIR)/drafter/build/out/Release/libdrafter.dylib /usr/local/lib/libdrafter.dylib
-	mkdir -p bin
+	mkdir -p ./test/bin
+
+travis:
+	cd drafter && ./configure --shared && make
+	mkdir -p ./test/bin
 
 clean:
 	rm /usr/local/lib/libdrafter.dylib

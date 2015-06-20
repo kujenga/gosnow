@@ -6,7 +6,8 @@ go:
 
 install:
   - git submodule update --init --recursive
-  - make install
+  - make travis
+  - export LD_LIBRARY_PATH=$(pwd)/drafter/build/out/Release/
 
 script:
   - make test

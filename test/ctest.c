@@ -12,4 +12,5 @@ int main(int argc, char const *argv[])
 	printf("Serialized JSON result:\n%s\n", result);
 
 	free(result); /* we MUST release allocted memory for result */
+	return 0;
 }
