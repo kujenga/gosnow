@@ -1,6 +1,7 @@
 package gosnow
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"testing"
 )
@@ -19,6 +20,29 @@ FORMAT: 1A
 # Group Messages
 
 # Message [/messages/{id}]
+
+## Retrieve Message [GET]
++ Response 200 (text/plain)
+
+        Hello World!
+
+`
+
+const warningSrc string = `
+FORMAT: 1A
+
+# Group Messages
+
+# Message [/messages/{id}]
+
++ Model (text/plain)
+
+        Hello World
+
+## Retrieve Message [GET]
++ Response 200 (text/plain)
+
+        Hello World!
 
 ## Retrieve Message [GET]
 + Response 200 (text/plain)
@@ -55,13 +79,15 @@ func init() {
 }
 
 func TestParse(t *testing.T) {
-	res, err := Parse(simpleSrc)
+	res, err := Parse(apibFile)
 	if err != nil {
 		t.Fatalf("Parse failed with error: %v", err)
 	}
-	if res == "" {
-		t.Fatal("Parse returned empty result")
+	if res == nil {
+		t.Fatal("Parse returned nil result")
 	}
+	// v, _ := json.MarshalIndent(res, "", "  ")
+	// fmt.Println(string(v))
 }
 
 // ensure that the option parse with a 0 does the same thing as the simple parse
@@ -75,7 +101,15 @@ func TestParseEquality(t *testing.T) {
 		t.Fatalf("OptionParse failed with err: %v", err)
 	}
 
-	if res1 != res2 {
+	v1, err := json.Marshal(res1)
+	if err != nil {
+		t.Fatalf("json marshal error: %v", err)
+	}
+	v2, err := json.Marshal(res2)
+	if err != nil {
+		t.Fatalf("json marshal error: %v", err)
+	}
+	if string(v1) != string(v2) {
 		t.Error("Results should be equal")
 	}
 }
@@ -86,7 +120,7 @@ func TestParseError(t *testing.T) {
 	if err == nil {
 		t.Errorf("OptionParse did not fail for junk input")
 	}
-	if res != "" {
+	if res != nil {
 		t.Errorf("OptionParse returned non=empty result for junk input")
 	}
 }
@@ -95,7 +129,7 @@ func TestFilesOptionParse(t *testing.T) {
 	res, err := OptionParse(apibFile, ScRenderDescriptionsOptionKey)
 	if err != nil {
 		t.Errorf("OptionParse failed for key ScRenderDescriptionsOptionKey with error: %v", err)
-	} else if res == "" {
+	} else if res == nil {
 		t.Errorf("OptionParse for key ScRenderDescriptionsOptionKey returned empty result")
 	}
 
@@ -107,7 +141,7 @@ func TestFilesOptionParse(t *testing.T) {
 	res, err = OptionParse(apibFile, ExportSourcemapOptionKey)
 	if err != nil {
 		t.Errorf("OptionParse failed for ExportSourcemapOptionKey with error: %v", err)
-	} else if res == "" {
+	} else if res == nil {
 		t.Errorf("OptionParse for key ExportSourcemapOptionKey returned empty result")
 	}
 }

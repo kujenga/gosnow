@@ -2,7 +2,7 @@
 
 A Go library for handling the [API Blueprint](https://apiblueprint.org) format, wrapping [Drafter](https://github.com/apiaryio/drafter) and [Snow Crash](https://github.com/apiaryio/snowcrash).
 
-Influenced in principle by [RedSnow](https://github.com/apiaryio/redsnow), the Ruby binding for [Snow Crash](https://github.com/apiaryio/snowcrash).
+Based on [RedSnow](https://github.com/apiaryio/redsnow), the Ruby binding for [Snow Crash](https://github.com/apiaryio/snowcrash).
 
 ## Setup
 
